@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   border: none;
-  font-family: Poiret One;
+  font-family: Poiret One, Kaiti;
   font-size: 18px;
   font-weight: 600;
 }
@@ -14,11 +14,22 @@ html, body {
   overflow: hidden;
 }
 
+a {
+  /*text-decoration: none;*/
+  color: rgba(19, 200, 240, 0.64);
+  font-weight: 900;
+ }
+ a:focus {
+   outline: 0;
+ }
+
 .container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .content {
   flex: none;
@@ -35,4 +46,15 @@ html, body {
 }
 div {
   text-align: center;
+}
+code {
+  background: rgba(204, 204, 204, 0.64);
+  border-radius: 4px;
+  padding: 0 4px;
+  margin: 0 4px;
+}
+[data-modal] p{
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 2;
 }
