@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>06-auto-fill-and-auto-fit</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    .grid {
+      display: grid;
+      /*auto-fill,auto-fit  总宽度小于父容器时，前者有留白，后者填充*/
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      grid-gap: 20px;
+    }
+    .grid div:nth-child(2) {
+      /*order越小排在前面*/
+      order: 1;
+    }
+    .grid div {
+      order: 2;
+      border: 1px solid rgb(34, 158, 173);
+      border-radius: 4px;
+      background-color: rgba(34, 158, 173,0.8);
+      color: #fff;
+    }
+    .grid div:nth-of-type(2n) {
+      background-color: rgba(32, 185, 135, 0.96);
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+  </div>
+</body>
+</html>

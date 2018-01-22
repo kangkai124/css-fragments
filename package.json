@@ -1,0 +1,8 @@
+{
+  "name": "css-fragments",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kangkai124/css-fragments.git",
+  "author": "kkstrive <kkstrive0124@gmail.com>",
+  "license": "MIT"
+}
