@@ -1,3 +1,226 @@
-.hello {
-  background: #2ee;
+* {
+  margin: 0;
+  padding: 0;
+}
+div {
+  box-sizing: border-box;
+}
+body {
+  padding: 20px;
+}
+
+// grid order
+.grid-name(@n, @i:1) when (@i <= @n) {
+  .grid-@{i}::after {
+    content: '@{i}';
+  }
+  .grid-name(@n, (@i + 1));
+}
+
+// grid item background color
+.grid-color(@n, @i:1) when (@i <= @n) {
+  .grid:nth-of-type(@{i}) .item{
+    background-color: hsl(16 * @i, 46%, 56%);
+  }
+  .grid-color(@n, (@i + 1));
+}
+
+#container {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 30px;
+}
+.grid {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  display: grid;
+  position: relative;
+  margin: 0 auto;
+  grid-template-columns: 3fr 2fr 1fr;
+  grid-template-rows: 100px 50px;
+  grid-gap: 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px #999;
+
+  .show {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    color: #fff;
+    font-size: 16px;
+    transition: opacity .3s ease-in-out;
+  }
+}
+.grid:hover .show{
+  opacity: 1;
+}
+
+.item {
+  font-size: 20px;
+  color: #fff;
+  padding: 20px;
+}
+
+h2 {
+  width: 30px;
+  height: 30px;
+  color: #333;
+  position: absolute;
+  top: 0;
+  right: 0;
+  img {
+    width: 30px;
+  }
+}
+
+h2.code:active {
+  background-color: #3ee;
+  top: 1;
+}
+
+.tip {
+  grid-column: 1 e('/') -1;
+  align-self: flex-end;
+  justify-self: center;
+}
+
+.grid-color(16);
+
+// .grid:nth-of-type(3) {
+//   grid-column: 3 e('/') 5;
+// }
+// .grid:nth-of-type(6) {
+//   grid-column: 3 e('/') 5;
+// }
+// .grid:nth-of-type(8) {
+//   grid-column: 2 e('/') 4;
+// }
+
+.grid-2 .item:nth-of-type(2) {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.grid-3 .item:nth-of-type(2) {
+  grid-column: 2 e('/') 4;
+  grid-row: 1 e('/') 2;
+}
+.grid-3 .item:nth-of-type(3) {
+  grid-column: 1 e('/') 3;
+  grid-row: 2 e('/') 3;
+}
+.grid-3 .item:nth-of-type(4) {
+  grid-area: 2 e('/') 3 e('/') 4 e('/') 4;
+}
+
+.grid-4 .item:nth-of-type(2) {
+  grid-column: 2 e('/') span 2;
+}
+.grid-4 .item:nth-of-type(3) {
+  grid-row: 2 e('/') span 2;
+}
+.grid-4 .item:nth-of-type(5) {
+  grid-row: 2 e('/') span 2;
+}
+
+.grid-5 .item:nth-of-type(2) {
+  grid-column-end: -1;
+  // 不设置grid-row会有惊喜...
+  grid-row: 1 e('/') 4;
+}
+.grid-5 .item:nth-of-type(6) {
+  grid-column-end: -2;
+}
+
+.grid.grid-6 {
+  grid-template-columns: [start] 3fr [main] 2fr [content] 1fr [end];
+  grid-template-rows: [top] 100px [middle] 50px [bottom];
+}
+.grid-6 .item:nth-of-type(3) {
+  grid-column: main e('/') end;
+  grid-row: top e('/') middle;
+}
+.grid-6 .item:nth-of-type(6) {
+  grid-column: start e('/') end;
+  grid-row-start: bottom;
+}
+
+.grid.grid-7 {
+  grid-template-columns: [col] 3fr [gap] 30px [col] 2fr [gap] 30px [col] 1fr [gap];
+}
+.grid-7 .item:nth-of-type(2) {
+  grid-column: col 2;
+}
+.grid-7 .item:nth-of-type(3) {
+  grid-column: gap 2;
+}
+.grid-7 .item:nth-of-type(4) {
+  grid-column: col 1 e('/') col 2;
+}
+.grid-7 .item:nth-of-type(5) {
+  grid-column: gap -1 e('/') col -1;
+}
+.grid-7 .item:nth-of-type(6) {
+  grid-column: col 2 e('/') col 3 ;
+  grid-row: 2 e('/') 3;
+}
+
+.grid.grid-8 {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+        'title title title title aside'
+        'nav main main main aside'
+        'nav main main main aside'
+        'footer footer footer footer footer';
+}
+.grid-8 {
+  .title {
+    grid-area: title;
+  }
+  .nav {
+    grid-area: nav;
+  }
+  .main {
+    grid-area: main;
+  }
+  .aside {
+    grid-area: aside;
+  }
+  .footer {
+    grid-area: footer;
+  }
+}
+
+.grid.grid-9 {
+  grid-template-columns: ~'[title-start nav-start footer-start] 1fr [main-start nav-end] 1fr 1fr 1fr [aside-start title-end main-end] 1fr [aside-end footer-end]';
+  grid-template-rows: ~'[title-start aside-start] 1fr [nav-start main-start title-end] 1fr 1fr [footer-start nav-end main-end aside-end] 1fr [footer-end]';
+}
+.grid-9 {
+  .title {
+    grid-area: title;
+  }
+  .nav {
+    grid-area: nav;
+  }
+  .main {
+    grid-area: main;
+  }
+  .aside {
+    grid-area: aside;
+  }
+  .footer {
+    grid-area: footer;
+  }
 }
