@@ -262,6 +262,17 @@
       <div class="item">4</div>
       <div class="item">5</div>
       <div class="item">6</div>
+      <div class="tip">grid-template终极简写</div>
+      <div class="show">
+        <pre>
+  grid-template: ~'[header-top] "a a a" [header-bottom] [main-top] "b b b" 0.8fr [main-bottom] / auto 0.8fr auto';
+  等价于
+  grid-template-areas: "a a a"
+                       "b b b";
+  grid-template-rows: [header-top] auto [header-bottom main-top] 0.8fr [main-bottom];
+  grid-template-columns: auto 0.8fr auto;
+        </pre>
+      </div>
     </div>
 
     <div class="grid grid-11">
@@ -271,6 +282,12 @@
       <div class="item">4</div>
       <div class="item">5</div>
       <div class="item">6</div>
+      <div class="tip">grid-auto-</div>
+      <div class="show">
+        <pre>
+          
+        </pre>
+      </div>
     </div>
 
     <div class="grid grid-12">
