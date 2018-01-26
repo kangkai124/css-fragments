@@ -1,3 +1,7 @@
+@import '../fonts/fonts.css';
+* {
+  font-family: JosefinSans, Kaiti;
+}
 .content {
   border: 0;
 }
@@ -149,4 +153,16 @@
   background-image: radial-gradient(circle, rgb(255, 169, 68),rgb(249, 140, 12),rgb(247, 102, 56));
   box-shadow: 0 0 6px 2px rgb(247, 102, 56);
   animation: cloudy 10s ease-in-out infinite;
+}
+
+code {
+  background: rgba(204, 204, 204, 0.64);
+  border-radius: 4px;
+  padding: 0 4px;
+  margin: 0 4px;
+}
+[data-modal] p{
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 2;
 }

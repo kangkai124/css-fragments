@@ -1,3 +1,7 @@
+@import '../fonts/fonts.css';
+* {
+  font-family: JosefinSans, Kaiti;
+}
 img {
   width: 300px;
 }
