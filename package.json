@@ -5,6 +5,9 @@
   "repository": "git@github.com:kangkai124/css-fragments.git",
   "author": "kkstrive <kkstrive0124@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "gulp"
+  },
   "devDependencies": {
     "browser-sync": "^2.23.6",
     "cssnano": "^3.10.0",
@@ -17,5 +20,9 @@
     "gulp-sourcemaps": "^1.12.1",
     "gulp-watch": "^5.0.0",
     "gulp-webserver": "^0.9.1"
+  },
+  "dependencies": {
+    "echarts": "^4.0.2",
+    "echarts-gl": "^1.0.1"
   }
 }
