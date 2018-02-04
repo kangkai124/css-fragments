@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>带文字的二维码</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #qrcode {
+      text-align: center;
+      padding-left: 20px;
+    }
+    img {
+      width: 200px;
+    }
+  </style>
+  <script src="./qrcode.min.js"></script>
+  <script src="./html2canvas.js"></script>
+</head>
+<body>
+  <div id="qrcode"></div>
+  <img id='hah' src>
+
+  <script type="text/javascript">
+    const getQRCode = (config) => {
+      const { url, text, size = 256, font = 16 } = config
+      const dom = document.getElementById(config.dom)
+      dom.style.width = size + 40 + 'px'
+      new QRCode(dom, {
+        text: url,
+        width: size,
+        height: size
+      });
+      const div = document.createElement('div')
+      dom.appendChild(div)
+      div.style.width = div.parentNode.firstChild.offsetWidth + 'px'
+      div.style.fontSize = font
+      text.forEach(text => {
+        const p = document.createElement('p')
+        p.innerHTML = text
+        p.classList.add('text')
+        div.appendChild(p)
+      })
+
+      const base64 = html2canvas(dom)
+      .then(canvas => {
+        return canvas.toDataURL('image/jpeg',1);
+      })
+      console.log(base64)
+      return Promise.resolve(base64)
+    }
+
+    getQRCode({
+      url: 'hello',
+      text: ['ddd', '当你走进这欢乐场，背上所有的梦和想，各色的脸上各色的妆，没人记得你的模样'],
+      size: 200,
+      font: 14,
+      dom: 'qrcode'
+    })
+    .then(base64 => {
+      document.getElementById('hah').src = base64
+    })
+
+  </script>
+</body>
+</html>
