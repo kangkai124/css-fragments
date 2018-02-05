@@ -5,116 +5,471 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>3D map</title>
+  <title>Shanghai map</title>
   <link rel="stylesheet" href="../common.css">
-  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-  <script src="../node_modules/echarts/dist/echarts.js"></script>
-  <script src="../node_modules/echarts-gl/dist/echarts-gl.js"></script>
-  <script type="text/javascript" src="./china.js"></script>
   <style>
     #map {
       width: 100%;
       height: 100%;
     }
   </style>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="../node_modules/echarts/dist/echarts.js"></script>
 </head>
 
 <body>
   <div id="map"></div>
-</body>
 
-<script type="text/javascript">
-  var myChart = echarts.init(document.getElementById('map'))
-
-  var uploadedDataURL = "./flights.json";
-
-  myChart.showLoading();
-
-  $.getJSON(uploadedDataURL, function(data) {
-
-    myChart.hideLoading();
-
-    function getAirportCoord(idx) {
-      return [data.airports[idx][3], data.airports[idx][4]];
-    }
-    var routes = data.routes.map(function(airline) {
-      return [
-        getAirportCoord(airline[1]),
-        getAirportCoord(airline[2])
-      ];
-    });
-    console.log(routes)
-
-    myChart.setOption({
-      geo3D: {
-        map: 'china',
-        shading: 'realistic',
-        silent: true,
-        environment: '#333',
-        realisticMaterial: {
-          roughness: 0.8,
-          metalness: 0
-        },
-        postEffect: {
-          enable: true
-        },
-        groundPlane: {
-          show: false
-        },
-        light: {
-          main: {
-            intensity: 1,
-            alpha: 30
-          },
-          ambient: {
-            intensity: 0
+  <script>
+    var allData = {
+      company: [{
+          name: '企业1',
+          value: [121.667706, 31.155944],
+          symbolSize: 4,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
           }
         },
-        viewControl: {
-          distance: 70,
-          alpha: 89,
-
-          panMouseButton: 'left',
-          rotateMouseButton: 'right'
+        {
+          name: '企业2',
+          value: [121.4212, 31.213123],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
         },
-
-        itemStyle: {
-          areaColor: '#2ee'
+        {
+          name: '企业3',
+          value: [121.490317, 31.222771],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
         },
-
-        regionHeight: 0.5
-      },
-      series: [{
-        type: 'lines3D',
-
-        coordinateSystem: 'geo3D',
-
-        effect: {
-          show: true,
-          trailWidth: 1,
-          trailOpacity: 0.5,
-          trailLength: 0.2,
-          constantSpeed: 5
+        {
+          name: '企业4',
+          value: [121.43752, 31.179973],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
         },
-
-        blendMode: 'lighter',
-
-        lineStyle: {
-          width: 1,
-          opacity: 0.1
+        {
+          name: '企业5',
+          value: [121.4222, 31.218123],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
         },
+        {
+          name: '企业6',
+          value: [121.448224, 31.229003],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业7',
+          value: [121.392499, 31.241701],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业8',
+          value: [121.491832, 31.26097],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业9',
+          value: [121.522797, 31.270755],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业10',
+          value: [121.375972, 31.111658],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业11',
+          value: [121.489934, 31.398896],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业12',
+          value: [121.250333, 31.383524],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业13',
+          value: [121.567706, 31.245944],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业14',
+          value: [121.330736, 30.724697],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业15',
+          value: [121.113021, 31.151209],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业16',
+          value: [121.458472, 30.912345],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        },
+        {
+          name: '企业17',
+          value: [120.153576, 30.287459],
+          symbolSize: 2,
+          itemStyle: {
+            normal: {
+              color: '#f58158'
+            }
+          }
+        }
+      ],
+      moveLines: [{
+          "fromName": "企业1",
+          "toName": "企业2",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.4212, 31.213123]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业3",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.490317, 31.222771]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业4",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.43752, 31.179973]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业5",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.4222, 31.218123]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业6",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.448224, 31.229003]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业7",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.392499, 31.241701]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业8",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.491832, 31.26097]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业9",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.522797, 31.270755]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业10",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.375972, 31.111658]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业11",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.489934, 31.398896]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业12",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.250333, 31.383524]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业13",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.567706, 31.245944]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业14",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.330736, 30.724697]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业15",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.113021, 31.151209]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业16",
+          "coords": [
+            [121.667706, 31.155944],
+            [121.458472, 30.912345]
+          ]
+        },
+        {
+          "fromName": "企业1",
+          "toName": "企业17",
+          "coords": [
+            [121.667706, 31.155944],
+            [120.153576, 30.287459]
+          ]
+        }
+      ]
+    }
 
-        data: routes
-      }]
-    });
 
-    window.addEventListener('keydown', function() {
-      myChart.dispatchAction({
-        type: 'lines3DToggleEffect',
-        seriesIndex: 0
+
+    var myChart = echarts.init(document.getElementById('map'))
+    myChart.showLoading()
+    var uploadedDataURL = "./szj.json";
+    $.getJSON(uploadedDataURL, function(data) {
+      echarts.registerMap('shanghai', data);
+      myChart.hideLoading();
+
+      myChart.setOption({
+        backgroundColor: '#404a59',
+        title: {
+          text: '江浙沪包邮',
+          left: 'right',
+          textStyle: {
+            color: '#fff'
+          }
+        },
+        geo: {
+          map: 'shanghai',
+          roam: true,
+          zoom: 10,
+          center: [121.567706, 31.245944],
+          label: {
+            show: true,
+            color: '#666'
+          },
+          emphasis: {
+            label: {
+              show: true,
+              color: '#d9d9d9'
+            }
+          },
+          itemStyle: {
+            normal: {
+              areaColor: '#323c48',
+              borderColor: '#838b96'
+            },
+            emphasis: {
+              areaColor: '#2a333d'
+            }
+          }
+        },
+        series: [{
+            name: '企业',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            zlevel: 2,
+            rippleEffect: {
+              brushType: 'stroke',
+              period: 7,
+              scale: 26
+            },
+            label: {
+              show: true,
+              formatter: function (params) {
+                console.log('{hah|}\n{value|' + params.name + '}')
+                return '{hah|}\n{value|' + params.name + '}'
+              },
+              rich: {
+                hah: {
+                  backgroundColor: {
+                    image: './bg2.png',
+                    width: 200,
+                    height: 200
+                  }
+                },
+                value: {
+                  color: '#d9d9d9'
+                }
+              },
+              color: '#d9d9d9',
+              // padding: 20,
+              offset: [20, 30],
+              emphasis: {
+                show: true,
+                position: 'right',
+                formatter: '{b}'
+              }
+            },
+            symbolSize: 2,
+            showEffectOn: 'render',
+            itemStyle: {
+              normal: {
+                color: '#46bee9'
+              }
+            },
+            data: allData.company
+          },
+          {
+            name: '路线',
+            type: 'lines',
+            coordinateSystem: 'geo',
+            zlevel: 2,
+            large: true,
+            effect: {
+              show: true,
+              constantSpeed: 30,
+              symbol: 'arrow', //ECharts 提供的标记类型包括 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow'
+              symbolSize: 6,
+              trailLength: 0,
+            },
+            lineStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: '#58B3CC'
+                }, {
+                  offset: 1,
+                  color: '#F58158'
+                }], false),
+                width: 1,
+                opacity: 0.6,
+                curveness: 0.2
+              }
+            },
+            data: allData.moveLines
+          },
+          {
+            name: '上海',
+            type: 'scatter',
+            coordinateSystem: 'geo',
+            label: {
+              show: true,
+              color: '#777',
+              fontSize: 20,
+              formatter: function (params) {
+                return params.name
+              }
+            },
+            data: [{
+                name: '上海',
+                value: [121.767706, 31.155944],
+                symbolSize: 1,
+                itemStyle: {
+                  normal: {
+                    color: 'transparent'
+                  }
+                }
+              }]
+          }
+        ]
       });
-    });
-  });
-</script>
+
+    })
+  </script>
+</body>
 
 </html>
