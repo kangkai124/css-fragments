@@ -30,7 +30,7 @@ gulp.task("web",function(){
             livereload: true,
             directoryListing: true,
             open: true,
-            host: '10.1.30.112',
+            host: '10.1.30.248',
             port:8080
         }))
 })
